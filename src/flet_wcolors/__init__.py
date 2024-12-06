@@ -1,0 +1,1 @@
+from .wcolors import WColors
