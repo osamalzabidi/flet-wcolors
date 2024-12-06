@@ -8,6 +8,13 @@ just to help the developer to get many colors without remembering their hex valu
 - Code Clarity: Improves readability with named colors over hex values.
 - Developer-Friendly: Eliminates the need to memorize hex codes.
 
+## Installation
+You can install Flet WColors using pip:
+
+```bash
+pip install git+https://github.com/omamkaz/flet-wcolors.git
+```
+
 ## Usage
 
 ```python
