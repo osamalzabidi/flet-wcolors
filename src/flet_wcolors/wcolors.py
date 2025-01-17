@@ -1,7 +1,6 @@
 import random
 from enum import Enum
-from typing import TYPE_CHECKING, Dict, List, Optional, Union, Tuple
-
+from typing import TYPE_CHECKING, Dict, List, Optional, Tuple, Union
 
 if TYPE_CHECKING:
     from flet.core.types import ColorValue
@@ -10,23 +9,32 @@ if TYPE_CHECKING:
 class WColors(str, Enum):
     @staticmethod
     def hex_to_rgb(hex_color: str) -> Tuple[int]:
-        hex_color = hex_color.lstrip('#')
-        return tuple(int(hex_color[i:i + 2], 16) for i in (0, 2, 4))
+        hex_color = hex_color.lstrip("#")
+        return tuple(int(hex_color[i : i + 2], 16) for i in range(0, 6, 2))
 
     @staticmethod
-    def luminance(color: "ColorValue") -> str:
+    def luminance(color: "ColorValue|WColors") -> float:
         try:
+            if isinstance(color, Enum):
+                color = str(color.value).upper()
+
             if not color.startswith("#"):
-                color = WColors(color.value if isinstance(color, Enum) else color)
+                color = getattr(WColors, color)
 
-            r, g, b = WColors.hex_to_rgb(color)
-
-            # Calculate luminance (per the WCAG formula)
-            luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-
-            return "#" + ("0" if luminance > 0.5 else "f") * 6
+            return (
+                sum(
+                    (p * c)
+                    for p, c in zip([0.299, 0.587, 0.114], WColors.hex_to_rgb(color))
+                )
+                / 255
+            )
         except ValueError:
-            return "#ffffff"
+            return 0.0
+
+    @staticmethod
+    def luminance_color(color: "ColorValue|WColors") -> str:
+        """return hex color from color luminance value."""
+        return "#" + ("0" if WColors.luminance(color) > 0.5 else "f") * 6
 
     @staticmethod
     def with_opacity(opacity: Union[int, float], color: "ColorValue") -> str:

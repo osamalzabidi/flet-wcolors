@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "flet-wcolors"
-version = "1.0.0"
+version = "1.0.2"
 description = "just to help the developer to get many colors without remembering their hex value, and I think it's helpful to get the color with names this will be clear in the code instead hex value!"
 authors = ["Osama Mohammed <omamkaz@gmail.com>"]
 readme = "README.md"
@@ -19,7 +19,7 @@ packages = [{ include = "flet_wcolors", from = "src" }]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-flet = "^0.25"
+flet = "^0.25.2"
 
 
 [build-system]

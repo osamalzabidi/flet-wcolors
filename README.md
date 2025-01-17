@@ -1,4 +1,4 @@
-# Web Colors
+# Web Colors v1.0.2
 
 just to help the developer to get many colors without remembering their hex value, and I think it's helpful to get the color with names this will be clear in the code instead hex value!
 
@@ -16,10 +16,6 @@ pip install git+https://github.com/omamkaz/flet-wcolors.git
 ```
 
 ## Usage
-
-```python
-WColors.RED # '#FF0000'
-```
 
 ```python
 import flet as ft

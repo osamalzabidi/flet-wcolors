@@ -11,35 +11,36 @@ def main(page: ft.Page):
     page.window.height = 600
 
     def color_search(e: ft.ControlEvent) -> None:
-        for control in page.controls[1].controls:
-            control.visible = e.control.value.lower() in control.content.value.lower()
-        page.update()
+        search_text = e.control.value.lower()
+        if len(search_text) >= 2:
+            for control in page.controls[1].controls:
+                control.visible = search_text in control.content.value.lower()
+            page.update()
 
     page.add(
-        ft.TextField(
-            hint_text="Search...",
-            on_change=color_search
-        ),
+        ft.SearchBar(bar_hint_text="Search...", on_change=color_search),
         ft.Row(
             wrap=True,
             expand=True,
             scroll=ft.ScrollMode.AUTO,
             controls=[
                 ft.Container(
-                    width=80,
-                    height=80,
+                    width=90,
+                    height=90,
                     bgcolor=color,
                     alignment=ft.alignment.center,
                     border_radius=8,
                     content=ft.Text(
-                        value = name,
-                        color = ft.WColors.luminance(color),
-                        text_align="center"
-                    )
+                        value=name,
+                        color=WColors.luminance_color(color),
+                        text_align="center",
+                    ),
                 )
-                for name, color in ft.WColors._member_map_.items()
-            ]
-        )
+                for name, color in WColors._member_map_.items()
+            ],
+        ),
     )
 
-ft.app(target=main)
+
+if __name__ == "__main__":
+    ft.app(target=main)
