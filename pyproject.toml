@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "flet-wcolors"
-version = "1.0.2"
-description = "just to help the developer to get many colors without remembering their hex value, and I think it's helpful to get the color with names this will be clear in the code instead hex value!"
+version = "1.1.0"
+description = "help the developer to get many colors without remembering their hex value, and I think it's helpful to get the color with names this will be clear in the code instead hex value!"
 authors = ["Osama Mohammed <omamkaz@gmail.com>"]
 readme = "README.md"
 license = "MIT"

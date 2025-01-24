@@ -1,4 +1,4 @@
-# Web Colors v1.0.2
+# Web Colors v1.1.0
 
 just to help the developer to get many colors without remembering their hex value, and I think it's helpful to get the color with names this will be clear in the code instead hex value!
 

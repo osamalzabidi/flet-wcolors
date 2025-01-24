@@ -26,20 +26,20 @@ def test_hex_to_rgb():
 
     # RED color
     r = WColors.hex_to_rgb("#FF0000")
-    assert r == (255,0, 0)
+    assert r == (255, 0, 0)
 
 
 def test_luminance_methods():
-    r = WColors.luminance("BLACK")
+    r = WColors.luminance_value("BLACK")
     assert r < 0.5
 
-    r = WColors.luminance(ft.Colors.BLACK)
+    r = WColors.luminance_value(ft.Colors.BLACK)
     assert r < 0.5
 
-    r = WColors.luminance("WHITE")
+    r = WColors.luminance_value("WHITE")
     assert r > 0.5
 
-    r = WColors.luminance(ft.Colors.WHITE)
+    r = WColors.luminance_value(ft.Colors.WHITE)
     assert r > 0.5
 
     r = WColors.luminance_color(ft.Colors.WHITE)
@@ -48,3 +48,32 @@ def test_luminance_methods():
     r = WColors.luminance_color(ft.Colors.BLACK)
     assert r == "#ffffff"
 
+
+def test_rgb_property():
+    # RED color
+    r = WColors.RED.rgb
+    assert r == (255, 0, 0)
+
+    # WHITE color
+    r = WColors.WHITE.rgb
+    assert r == (255, 255, 255)
+
+
+def test_luminance_property():
+    # BLACK color
+    r = WColors.BLACK.luminance
+    assert r < 0.5
+
+    # WHITE color
+    r = WColors.WHITE.luminance
+    assert r > 0.5
+
+
+def test_add_expr():
+    # BLACK color
+    r = WColors.BLACK + 0.5
+    assert r == "#000000,0.5"
+
+    # WHITE color
+    r = WColors.WHITE + 0.3
+    assert r == "#FFFFFF,0.3"

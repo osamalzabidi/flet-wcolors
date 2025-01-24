@@ -13,7 +13,7 @@ class WColors(str, Enum):
         return tuple(int(hex_color[i : i + 2], 16) for i in range(0, 6, 2))
 
     @staticmethod
-    def luminance(color: "ColorValue|WColors") -> float:
+    def luminance_value(color: "ColorValue|WColors") -> float:
         try:
             if isinstance(color, Enum):
                 color = str(color.value).upper()
@@ -34,7 +34,7 @@ class WColors(str, Enum):
     @staticmethod
     def luminance_color(color: "ColorValue|WColors") -> str:
         """return hex color from color luminance value."""
-        return "#" + ("0" if WColors.luminance(color) > 0.5 else "f") * 6
+        return "#" + ("0" if WColors.luminance_value(color) > 0.5 else "f") * 6
 
     @staticmethod
     def with_opacity(opacity: Union[int, float], color: "ColorValue") -> str:
@@ -67,19 +67,31 @@ class WColors(str, Enum):
             return random.choices(choices, weights=weights_list)[0]
         return random.choice(choices)
 
+    def __repr__(self) -> str:
+        return str(self)
+
     def __str__(self) -> str:
         return self.value
 
-    def __repr__(self) -> str:
-        return str(self)
+    def __hash__(self):
+        return hash(self.value)
 
     def __eq__(self, other):
         if isinstance(other, Enum):
             return self.value == other.value
         return self.value == other
 
-    def __hash__(self):
-        return hash(self.value)
+    def __add__(self, opacity: float) -> str:
+        assert 0 <= opacity <= 1, "opacity must be between 0 and 1"
+        return f"{self.value},{opacity}"
+
+    @property
+    def rgb(self) -> Tuple[int]:
+        return WColors.hex_to_rgb(self.value)
+
+    @property
+    def luminance(self) -> float:
+        return WColors.luminance_value(self.value)
 
     RED = "#FF0000"
     CHERRY_RED = "#990F02"
