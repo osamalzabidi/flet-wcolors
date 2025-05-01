@@ -1,4 +1,4 @@
-# Web Colors v1.1.0
+# Web Colors v1.1.2
 
 just to help the developer to get many colors without remembering their hex value, and I think it's helpful to get the color with names this will be clear in the code instead hex value!
 
@@ -49,3 +49,8 @@ ft.app(target=main)
 ## Output of above code
 
 ![Example 2](media/example_2.png)
+
+
+## Contributing
+
+Pull requests and suggestions are welcome! Open an issue first to discuss any major changes.

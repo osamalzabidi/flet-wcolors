@@ -12,3 +12,7 @@
 - Added: `WColors.rgb` property value.
 - Added: `WColors.luminance` property value.
 - Added: `WColors + opacity` to add opacity to the color value.
+
+## v1.1.2
+
+- Added: `rgb_to_hex`, `mix_colors`, `mix_dark`, `mix_light` methods

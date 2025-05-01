@@ -13,6 +13,10 @@ class WColors(str, Enum):
         return tuple(int(hex_color[i : i + 2], 16) for i in range(0, 6, 2))
 
     @staticmethod
+    def rgb_to_hex(rgb: Tuple[int, int, int]) -> str:
+        return "#" + "".join("{0:02x}".format(int(x)) for x in rgb)
+
+    @staticmethod
     def luminance_value(color: "ColorValue|WColors") -> float:
         try:
             if isinstance(color, Enum):
@@ -92,6 +96,30 @@ class WColors(str, Enum):
     @property
     def luminance(self) -> float:
         return WColors.luminance_value(self.value)
+
+    @staticmethod
+    def mix_colors(
+        color1: "WColors" | Tuple[int],
+        color2: "WColors" | Tuple[int],
+        weight: float = 0.9,
+    ) -> str:
+        return WColors.rgb_to_hex(
+            [
+                (c1 * weight) + c2 * (1 - weight)
+                for c1, c2 in zip(
+                    color1.rgb if isinstance(color1, str) else color1,
+                    color2.rgb if isinstance(color2, str) else color2,
+                )
+            ]
+        )
+
+    @staticmethod
+    def mix_dark(color: "WColors", weight: float = 0.9) -> str:
+        return WColors.mix_colors(color, WColors.BLACK, weight)
+
+    @staticmethod
+    def mix_light(color: "WColors", weight: float = 0.9) -> str:
+        return WColors.mix_colors(color, WColors.WHITE, weight)
 
     RED = "#FF0000"
     CHERRY_RED = "#990F02"
