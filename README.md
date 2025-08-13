@@ -12,7 +12,7 @@ just to help the developer to get many colors without remembering their hex valu
 You can install Flet WColors using pip:
 
 ```bash
-pip install git+https://github.com/omamkaz/flet-wcolors.git
+pip install git+https://github.com/osamalzabidi/flet-wcolors.git
 ```
 
 ## Usage
@@ -24,6 +24,7 @@ from flet_wcolors import WColors
 
 def main(page: ft.Page):
     page.title = "Web Colors Example 2"
+
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
     page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
